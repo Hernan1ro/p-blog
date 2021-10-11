@@ -1,26 +1,45 @@
 import React from "react";
 
-const App = () => {
-  return (
-    <div className="margen">
-      <table className = "tabla">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Enlace</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Rodolfo</td>
-            <td>Rodolfo@gmail.com</td>
-            <td>Rodolfo.com</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
-};
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = [
+      {
+        name: "Lina campo",
+        email: "linuxcampo@gmail.com",
+        link: "lina.com",
+      },
+      {
+        name: "Hernán Mercado",
+        email: "hernandmf@gmail.com",
+        link: "hernan.com",
+      },
+    ];
+  }
+  render() {
+    return (
+      <div className="margen">
+        <table className="tabla">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Enlace</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.map((user) => (
+              <tr>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.link}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
 
 export default App;
