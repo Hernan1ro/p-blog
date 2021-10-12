@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+  padding: 0;
+}
 .margen {
   margin: 100px;
 }
@@ -9,4 +13,20 @@
 .tabla td {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+#menu {
+  background-color: #253a46;
+  padding: 20px;
+  font-size: 20px;
+}
+#menu ul {
+  display: flex;
+}
+#menu li {
+  list-style: none;
+}
+#menu li a {
+  color: white;
+  padding-right: 50px;
+  text-decoration: none;
 }
