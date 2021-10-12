@@ -1,20 +1,30 @@
 import React from "react";
+import axios from "axios";
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = [
-      {
-        name: "Lina campo",
-        email: "linuxcampo@gmail.com",
-        link: "lina.com",
-      },
-      {
-        name: "Hernán Mercado",
-        email: "hernandmf@gmail.com",
-        link: "hernan.com",
-      },
-    ];
+    this.state = {
+      usuarios: [],
+    };
+  }
+  async componentDidMount() {
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/users"
+    );
+    this.setState({
+      usuarios: response.data,
+    });
+    console.log(response.data);
+  }
+  renderList() {
+    return this.state.usuarios.map((user) => (
+      <tr key={user.id}>
+        <td>{user.name}</td>
+        <td>{user.email}</td>
+        <td>{user.website}</td>
+      </tr>
+    ));
   }
   render() {
     return (
@@ -27,15 +37,7 @@ class App extends React.Component {
               <th>Enlace</th>
             </tr>
           </thead>
-          <tbody>
-            {this.state.map((user) => (
-              <tr>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.link}</td>
-              </tr>
-            ))}
-          </tbody>
+          <tbody>{this.renderList()}</tbody>
         </table>
       </div>
     );
