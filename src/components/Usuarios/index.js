@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import Fatal from "../general/Fatal";
+import Spinner from "../general/Spinner";
 import * as usuariosActions from "../../actions/usuariosActions";
 
 class Usuarios extends React.Component {
@@ -15,23 +17,28 @@ class Usuarios extends React.Component {
       </tr>
     ));
   }
-  render() {
-    console.log(this.props.cargando);
-    console.log(this.props.error);
+  renderTable() {
+    if (this.props.cargando) {
+      return <Spinner />;
+    }
+    if (this.props.error) {
+      return <Fatal mensaje = {this.props.error} />;
+    }
     return (
-      <div>
-        <table className="tabla">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Enlace</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderList()}</tbody>
-        </table>
-      </div>
+      <table className="tabla">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Enlace</th>
+          </tr>
+        </thead>
+        <tbody>{this.renderList()}</tbody>
+      </table>
     );
+  }
+  render() {
+    return <div className="list-container">{this.renderTable()}</div>;
   }
 }
 

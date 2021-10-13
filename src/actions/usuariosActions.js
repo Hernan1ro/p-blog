@@ -16,7 +16,7 @@ export const traerTodos = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ERROR,
-      payload: error.message,
+      payload: "La has liado, busca una biblia",
     });
   }
 };
