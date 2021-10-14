@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as usuariosActions from "../../actions/usuariosActions";
+import * as publicacionesActions from "../../actions/publicacionesActions";
 
 class Publicaciones extends React.Component {
   componentDidMount() {
-    if (!this.props.usuarios.length) {
+    if (!this.props.usuariosReducer.usuarios.length) {
       this.props.traerTodos();
     }
   }
@@ -18,7 +19,14 @@ class Publicaciones extends React.Component {
     );
   }
 }
-const mapStateToProps = (reducers) => {
-  return reducers.usuariosReducer;
+const mapStateToProps = ({ usuariosReducer, publicacionesReducer }) => {
+  return {
+    usuariosReducer,
+    publicacionesReducer,
+  };
 };
-export default connect(mapStateToProps, usuariosActions)(Publicaciones);
+const mapDispatchToProps = {
+  ...usuariosActions,
+  ...publicacionesActions
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Publicaciones);
