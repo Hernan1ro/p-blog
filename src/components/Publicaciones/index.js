@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import * as usuariosActions from "../../actions/usuariosActions";
 import * as publicacionesActions from "../../actions/publicacionesActions";
 const { traerTodos: usuariosTraerTodos } = usuariosActions;
-const { traerTodos: publicacionesTraerTodos } = publicacionesActions;
+const { traerPorUsuario: traerPorUsuario } = publicacionesActions;
 
 class Publicaciones extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
     if (!this.props.usuariosReducer.usuarios.length) {
-      this.props.publicacionesTraerTodos();
-      this.props.usuariosTraerTodos();
+      await this.props.usuariosTraerTodos();
     }
+    this.props.traerPorUsuario(this.props.match.params.key);
   }
   render() {
     console.log(this.props);
@@ -30,6 +30,6 @@ const mapStateToProps = ({ usuariosReducer, publicacionesReducer }) => {
 };
 const mapDispatchToProps = {
   usuariosTraerTodos,
-  publicacionesTraerTodos,
+  traerPorUsuario,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Publicaciones);
