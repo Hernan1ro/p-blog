@@ -4,14 +4,12 @@ import * as usuariosActions from "../../actions/usuariosActions";
 
 class Publicaciones extends React.Component {
   componentDidMount() {
-    console.log(this.props.usuarios);
-    this.props.traerTodos();
-    console.log(this.props.usuarios);
-    if (!this.props.usuarios) {
-      console.log(this.props.traerTodos());
+    if (!this.props.usuarios.length) {
+      this.props.traerTodos();
     }
   }
   render() {
+    console.log(this.props);
     return (
       <div>
         <h1>Publicaciones de</h1>
