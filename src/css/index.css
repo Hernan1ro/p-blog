@@ -4,7 +4,7 @@ body {
 }
 .margen {
   margin: 100px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .tabla {
