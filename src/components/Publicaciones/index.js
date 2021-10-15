@@ -44,6 +44,43 @@ class Publicaciones extends React.Component {
 
     return <h1>Publicaciones de {nombre}</h1>;
   };
+
+  ponerPublicaciones = () => {
+    const {
+      usuariosReducer,
+      usuariosReducer: { usuarios },
+      publicacionesReducer,
+      publicacionesReducer: { publicaciones },
+      match: {
+        params: { key },
+      },
+    } = this.props;
+
+    if (!usuarios.length) return;
+    if (usuariosReducer.error) return;
+    if (publicacionesReducer.cargando) {
+      return <Spinner />;
+    }
+    if (publicacionesReducer.error) {
+      return <Fatal mensaje={publicacionesReducer.error} />;
+    }
+    if (!publicaciones.length) return;
+    if (!("publicaciones_key" in usuarios[key])) return;
+
+    const { publicaciones_key } = usuarios[key];
+    return publicaciones[publicaciones_key].map((publicacion) => (
+      <div
+        key={publicacion.id}
+        className="pub_titulo"
+        onClick={() => alert(publicacion.id)}
+      >
+        <h2>{publicacion.title}</h2>
+        <h3>{publicacion.body}</h3>
+        <hr />
+      </div>
+    ));
+  };
+
   render() {
     console.log(this.props);
     return (
@@ -51,6 +88,7 @@ class Publicaciones extends React.Component {
         <div>
           {this.props.match.params.key}
           {this.ponerUsuario()}
+          {this.ponerPublicaciones()}
         </div>
       </div>
     );
