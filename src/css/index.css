@@ -4,6 +4,7 @@ body {
 }
 .margen {
   margin: 100px;
+  text-align: center;
 }
 
 .tabla {
@@ -38,4 +39,7 @@ body {
   color: red;
   font-size: 25px;
   text-align: center;
+}
+.pub_titulo {
+  cursor: pointer;
 }

@@ -86,7 +86,6 @@ class Publicaciones extends React.Component {
     return (
       <div>
         <div>
-          {this.props.match.params.key}
           {this.ponerUsuario()}
           {this.ponerPublicaciones()}
         </div>

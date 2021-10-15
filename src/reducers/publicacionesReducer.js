@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
     case CARGANDO:
       return { ...state, cargando: true };
     case ERROR:
-      return { ...state, errror: action.payload, cargando: false };
+      return { ...state, error: action.payload, cargando: false };
     default:
       return state;
   }
