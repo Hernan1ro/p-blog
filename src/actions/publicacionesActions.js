@@ -51,6 +51,24 @@ export const traerPorUsuario = (key) => async (dispatch, getState) => {
   }
 };
 
-export const abrirCerrar = (publicaciones_key, com_key) => (dispatch) => {
-  console.log(publicaciones_key, com_key);
-};
+export const abrirCerrar =
+  (publicaciones_key, com_key) => (dispatch, getState) => {
+    const { publicaciones } = getState().publicacionesReducer;
+    const seleccionada = publicaciones[publicaciones_key][com_key];
+
+    const actualizada = {
+      ...seleccionada,
+      abierto: !seleccionada.abierto,
+    };
+
+    const publicacionesActualizadas = [...publicaciones];
+    publicacionesActualizadas[publicaciones_key] = [
+      ...publicaciones[publicaciones_key],
+    ];
+    publicacionesActualizadas[publicaciones_key][com_key] = actualizada;
+
+    dispatch({
+      type: TRAER_POR_USUARIO,
+      payload: publicacionesActualizadas,
+    });
+  };

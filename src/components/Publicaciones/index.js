@@ -82,6 +82,7 @@ class Publicaciones extends React.Component {
       >
         <h2>{publicacion.title}</h2>
         <h3>{publicacion.body}</h3>
+        {publicacion.abierto ? "abierto" : "cerrado"}
         <hr />
       </div>
     ));
