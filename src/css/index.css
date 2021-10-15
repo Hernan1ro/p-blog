@@ -33,3 +33,9 @@ body {
 .list-container {
   text-align: center;
 }
+
+.error-mensaje {
+  color: red;
+  font-size: 25px;
+  text-align: center;
+}

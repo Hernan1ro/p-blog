@@ -1,7 +1,7 @@
 import React from "react";
 
 const Fatal = ({ mensaje }) => {
-  return <div>{mensaje}</div>;
+  return <div className="error-mensaje">{mensaje}</div>;
 };
 
 export default Fatal;
