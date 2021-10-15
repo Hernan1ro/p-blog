@@ -19,7 +19,13 @@ export const traerPorUsuario = (key) => async (dispatch, getState) => {
     const respuesta = await axios.get(
       `http://jsonplaceholder.typicode.com/posts?userId=${usuario_id}`
     );
-    const publicaciones_actualizadas = [...publicaciones, respuesta.data];
+    const nuevas = respuesta.data.map((publicacion) => ({
+      ...publicacion,
+      comentarios: [],
+      abierto: false,
+    }));
+
+    const publicaciones_actualizadas = [...publicaciones, nuevas];
 
     dispatch({
       type: TRAER_POR_USUARIO,
@@ -43,4 +49,8 @@ export const traerPorUsuario = (key) => async (dispatch, getState) => {
       payload: "Publicaciones no disponibles",
     });
   }
+};
+
+export const abrirCerrar = (publicaciones_key, com_key) => (dispatch) => {
+  console.log(publicaciones_key, com_key);
 };
