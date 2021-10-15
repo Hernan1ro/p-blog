@@ -84,7 +84,7 @@ class Publicaciones extends React.Component {
         key={publicacion.id}
         className="pub_titulo"
         onClick={() =>
-          this.props.mostrarComentarios(
+          this.mostrarComentarios(
             publicaciones_key,
             com_key,
             publicacion.comentarios
@@ -99,6 +99,9 @@ class Publicaciones extends React.Component {
     ));
   mostrarComentarios = (publicaciones_key, com_key, comentarios) => {
     this.props.abrirCerrar(publicaciones_key, com_key);
+    if (!comentarios.length) {
+      this.props.traerComentarios(publicaciones_key, com_key);
+    }
     this.props.traerComentarios(publicaciones_key, com_key);
   };
   render() {
