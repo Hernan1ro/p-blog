@@ -5,11 +5,11 @@ import Fatal from "../general/Fatal";
 
 const Comentarios = (props) => {
   console.log(props);
-  if (props.com_cargando) {
-    return <Spinner />;
-  }
   if (props.com_error) {
     return <Fatal mensaje={props.errorMensaje} />;
+  }
+  if (props.com_cargando && !props.comentarios.length) {
+    return <Spinner />;
   }
   const ponerComentarios = () =>
     props.comentarios.map((comentario) => (

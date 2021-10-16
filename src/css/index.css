@@ -43,3 +43,6 @@ body {
 .pub_titulo {
   cursor: pointer;
 }
+li {
+  margin: 15px 0 15px 0;
+}

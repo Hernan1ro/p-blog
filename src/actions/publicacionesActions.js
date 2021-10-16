@@ -84,7 +84,7 @@ export const traerComentarios =
     const seleccionada = publicaciones[publicaciones_key][com_key];
     try {
       const respuesta = await axios.get(
-        `https://jsonplaceholder.typicode.comm/comments?postId=${seleccionada.id}`
+        `https://jsonplaceholder.typicode.com/comments?postId=${seleccionada.id}`
       );
       const actualizada = {
         ...seleccionada,
