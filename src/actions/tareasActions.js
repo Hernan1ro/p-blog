@@ -32,3 +32,16 @@ export const traerTareas = () => async (dispatch) => {
     });
   }
 };
+
+export const cambioUsuarioId = (usuarioId) => (dispatch) => {
+  dispatch({
+    type: "cambio_usuario_id",
+    payload: usuarioId,
+  });
+};
+export const cambioTitulo = (titulo) => (dispatch) => {
+  dispatch({
+    type: "cambio_titulo",
+    payload: titulo,
+  });
+};
