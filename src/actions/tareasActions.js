@@ -1,4 +1,11 @@
-import { CARGANDO, ERROR, TRAER_TAREAS } from "../types/tareasTypes";
+import {
+  CARGANDO,
+  ERROR,
+  TRAER_TAREAS,
+  CAMBIO_USUARIO_ID,
+  CAMBIO_TITULO,
+  AGREGADA,
+} from "../types/tareasTypes";
 import axios from "axios";
 
 export const traerTareas = () => async (dispatch) => {
@@ -35,13 +42,13 @@ export const traerTareas = () => async (dispatch) => {
 
 export const cambioUsuarioId = (usuarioId) => (dispatch) => {
   dispatch({
-    type: "cambio_usuario_id",
+    type: CAMBIO_USUARIO_ID,
     payload: usuarioId,
   });
 };
 export const cambioTitulo = (titulo) => (dispatch) => {
   dispatch({
-    type: "cambio_titulo",
+    type: CAMBIO_TITULO,
     payload: titulo,
   });
 };
@@ -57,10 +64,9 @@ export const agregar = (nuevaTarea) => async (dispatch) => {
     );
     console.log(respuesta.data);
     dispatch({
-      type: "agregada",
+      type: AGREGADA,
     });
   } catch (error) {
-    console.log("error", error);
     dispatch({
       type: ERROR,
       payload: "Hubo un error en el envío de datos",

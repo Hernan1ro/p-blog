@@ -7,7 +7,9 @@ import Guardar from "./Guardar";
 import { Link } from "react-router-dom";
 class Tareas extends React.Component {
   componentDidMount() {
-    console.log(this.props.traerTareas());
+    if (!Object.keys(this.props.tareas).length) {
+      this.props.traerTodas();
+    }
   }
   mostrarContenido = () => {
     const { cargando, error, tareas } = this.props;

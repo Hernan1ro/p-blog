@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as tareasActions from "../../actions/tareasActions";
+import Spinner from "../general/Spinner";
+import Fatal from "../general/Fatal";
+import { Redirect } from "react-router-dom";
 
 class Guardar extends Component {
   cambioUsuarioId = (event) => {
@@ -19,6 +22,25 @@ class Guardar extends Component {
     };
     agregar(nuevaTarea);
   };
+  deshabilitar = () => {
+    const { usuario_id, titulo, cargando } = this.props;
+    if (cargando) {
+      return true;
+    }
+    if (!usuario_id || !titulo) {
+      return true;
+    }
+    return false;
+  };
+  mostrarAccion = () => {
+    const { error, cargando } = this.props;
+    if (cargando) {
+      return <Spinner />;
+    }
+    if (error) {
+      return <Fatal mensaje={error} />;
+    }
+  };
   render() {
     console.log(this.props);
     return (
@@ -36,7 +58,10 @@ class Guardar extends Component {
         <input value={this.props.titulo} onChange={this.cambioTitulo} />
         <br />
         <br />
-        <button onClick={this.guardar}>guardar</button>
+        <button onClick={this.guardar} disabled={this.deshabilitar()}>
+          guardar
+        </button>
+        {this.mostrarAccion()}
       </div>
     );
   }
