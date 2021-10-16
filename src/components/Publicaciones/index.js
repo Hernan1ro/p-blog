@@ -112,7 +112,6 @@ class Publicaciones extends React.Component {
     this.props.traerComentarios(publicaciones_key, com_key);
   };
   render() {
-    console.log(this.props.publicacionesReducer.com_error);
     return (
       <div>
         <div>

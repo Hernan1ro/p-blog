@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Tabla = (props) => {
-  console.log(props.usuarios);
   function renderList() {
     return props.usuarios.map((user, key) => (
       <tr key={user.id}>
