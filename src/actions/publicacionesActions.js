@@ -3,6 +3,8 @@ import {
   TRAER_POR_USUARIO,
   ERROR,
   CARGANDO,
+  COM_CARGANDO,
+  COM_ERROR,
 } from "../types/publicacionesTypes";
 import * as usuariosTypes from "../types/usuariosTypes";
 
@@ -75,23 +77,32 @@ export const abrirCerrar =
 
 export const traerComentarios =
   (publicaciones_key, com_key) => async (dispatch, getState) => {
+    dispatch({
+      type: COM_CARGANDO,
+    });
     const { publicaciones } = getState().publicacionesReducer;
     const seleccionada = publicaciones[publicaciones_key][com_key];
-
-    const respuesta = await axios.get(
-      `https://jsonplaceholder.typicode.com/comments?postId=${seleccionada.id}`
-    );
-    const actualizada = {
-      ...seleccionada,
-      comentarios: respuesta.data,
-    };
-    const publicacionesActualizadas = [...publicaciones];
-    publicacionesActualizadas[publicaciones_key] = [
-      ...publicaciones[publicaciones_key],
-    ];
-    publicacionesActualizadas[publicaciones_key][com_key] = actualizada;
-    dispatch({
-      type: TRAER_POR_USUARIO,
-      payload: publicacionesActualizadas,
-    });
+    try {
+      const respuesta = await axios.get(
+        `https://jsonplaceholder.typicode.comm/comments?postId=${seleccionada.id}`
+      );
+      const actualizada = {
+        ...seleccionada,
+        comentarios: respuesta.data,
+      };
+      const publicacionesActualizadas = [...publicaciones];
+      publicacionesActualizadas[publicaciones_key] = [
+        ...publicaciones[publicaciones_key],
+      ];
+      publicacionesActualizadas[publicaciones_key][com_key] = actualizada;
+      dispatch({
+        type: TRAER_POR_USUARIO,
+        payload: publicacionesActualizadas,
+      });
+    } catch (error) {
+      dispatch({
+        type: COM_ERROR,
+        payload: "Comentarios no encontrados",
+      });
+    }
   };

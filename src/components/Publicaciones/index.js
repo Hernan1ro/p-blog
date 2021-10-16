@@ -93,7 +93,14 @@ class Publicaciones extends React.Component {
       >
         <h2>{publicacion.title}</h2>
         <h3>{publicacion.body}</h3>
-        {publicacion.abierto ? <Comentarios /> : ""}
+        {publicacion.abierto ? (
+          <Comentarios
+            comentarios={publicacion.comentarios}
+            errorMensaje={this.props.publicacionesReducer.com_error}
+          />
+        ) : (
+          ""
+        )}
         <hr />
       </div>
     ));
@@ -105,7 +112,7 @@ class Publicaciones extends React.Component {
     this.props.traerComentarios(publicaciones_key, com_key);
   };
   render() {
-    console.log(this.props);
+    console.log(this.props.publicacionesReducer.com_error);
     return (
       <div>
         <div>
