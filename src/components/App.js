@@ -4,6 +4,7 @@ import Usuarios from "./Usuarios";
 import Menu from "./Menu";
 import Publicaciones from "./Publicaciones";
 import Tareas from "./Tareas";
+import TareasGuardar from "./Tareas/Guardar";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <div className="margen">
         <Route exact path="/" component={Usuarios} />
         <Route exact path="/tareas" component={Tareas} />
+        <Route exact path="/tareas/guardar" component={TareasGuardar} />
         <Route exact path="/publicaciones/:key" component={Publicaciones} />
       </div>
     </BrowserRouter>

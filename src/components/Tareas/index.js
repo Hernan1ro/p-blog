@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import * as tareasActions from "../../actions/tareasActions";
 import Spinner from "../general/Spinner";
 import Fatal from "../general/Fatal";
+import Guardar from "./Guardar";
+import { Link } from "react-router-dom";
 class Tareas extends React.Component {
   componentDidMount() {
     console.log(this.props.traerTareas());
@@ -35,8 +37,14 @@ class Tareas extends React.Component {
     ));
   };
   render() {
-    console.log(this.props);
-    return <div>{this.mostrarContenido()}</div>;
+    return (
+      <div>
+        <button>
+          <Link to={"/tareas/guardar"}>Agregar</Link>
+        </button>
+        {this.mostrarContenido()}
+      </div>
+    );
   }
 }
 const mapStateToProps = ({ tareasReducer }) => tareasReducer;
