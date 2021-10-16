@@ -45,3 +45,25 @@ export const cambioTitulo = (titulo) => (dispatch) => {
     payload: titulo,
   });
 };
+
+export const agregar = (nuevaTarea) => async (dispatch) => {
+  dispatch({
+    type: CARGANDO,
+  });
+  try {
+    const respuesta = await axios.post(
+      "https://jsonplaceholder.typicode.com/todos",
+      nuevaTarea
+    );
+    console.log(respuesta.data);
+    dispatch({
+      type: "agregada",
+    });
+  } catch (error) {
+    console.log("error", error);
+    dispatch({
+      type: ERROR,
+      payload: "Hubo un error en el envío de datos",
+    });
+  }
+};
