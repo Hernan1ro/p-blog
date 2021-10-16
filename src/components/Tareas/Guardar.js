@@ -42,9 +42,9 @@ class Guardar extends Component {
     }
   };
   render() {
-    console.log(this.props);
     return (
       <div>
+        {this.props.regresar ? <Redirect to="/tareas" /> : ""}
         <h1>Guardar tarea</h1>
         usuario id:
         <input
