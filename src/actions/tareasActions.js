@@ -6,6 +6,7 @@ import {
   CAMBIO_TITULO,
   GUARDAR,
   ACTUALIZAR,
+  LIMPIAR,
 } from "../types/tareasTypes";
 import axios from "axios";
 
@@ -63,7 +64,6 @@ export const agregar = (nuevaTarea) => async (dispatch) => {
       "https://jsonplaceholder.typicode.com/todos",
       nuevaTarea
     );
-    console.log(respuesta.data);
     dispatch({
       type: GUARDAR,
     });
@@ -121,7 +121,6 @@ export const eliminar = (tar_id) => async (dispatch) => {
     const respuesta = await axios.delete(
       `https://jsonplaceholder.typicode.com/todos/${tar_id}`
     );
-    console.log(respuesta);
     dispatch({
       type: TRAER_TAREAS,
       payload: {},
@@ -132,4 +131,10 @@ export const eliminar = (tar_id) => async (dispatch) => {
       payload: "No hay datos",
     });
   }
+};
+
+export const limpiarForma = () => (dispatch) => {
+  dispatch({
+    type: LIMPIAR,
+  });
 };

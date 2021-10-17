@@ -12,8 +12,9 @@ class Tareas extends React.Component {
     }
   }
   componentDidUpdate() {
-    if (!Object.keys(this.props.tareas).length) {
-      this.props.traerTareas();
+    const { tareas, cargando, traerTareas } = this.props;
+    if (!Object.keys(tareas).length && !cargando) {
+      traerTareas();
     }
   }
   mostrarContenido = () => {
@@ -54,7 +55,6 @@ class Tareas extends React.Component {
     ));
   };
   render() {
-    console.log(this.props.tareas);
     return (
       <div>
         <button>
