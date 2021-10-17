@@ -35,6 +35,10 @@ class Tareas extends React.Component {
       <div key={tar_id}>
         <input type="checkbox" defaultChecked={por_usuario[tar_id].completed} />
         {por_usuario[tar_id].title}
+        <Link to={`/tareas/guardar/${usu_id}/${tar_id}`}>
+          <button className="m_left">Editar</button>
+        </Link>
+        <button className="m_left">Eliminar</button>
       </div>
     ));
   };

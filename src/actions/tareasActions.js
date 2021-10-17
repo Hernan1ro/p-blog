@@ -73,3 +73,7 @@ export const agregar = (nuevaTarea) => async (dispatch) => {
     });
   }
 };
+
+export const editar = (tarea_editada) => (dispatch) => {
+  console.log(tarea_editada);
+};
