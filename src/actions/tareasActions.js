@@ -112,3 +112,24 @@ export const cambioCheck = (usu_id, tar_id) => (dispatch, getState) => {
     payload: actualizadas,
   });
 };
+
+export const eliminar = (tar_id) => async (dispatch) => {
+  dispatch({
+    type: CARGANDO,
+  });
+  try {
+    const respuesta = await axios.delete(
+      `https://jsonplaceholder.typicode.com/todos/${tar_id}`
+    );
+    console.log(respuesta);
+    dispatch({
+      type: TRAER_TAREAS,
+      payload: {},
+    });
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: "No hay datos",
+    });
+  }
+};
